@@ -87,6 +87,16 @@ function nextSong() {
 // On Load - Selecting first Song
 loadSong(songs[songIndex]);
 
+// update Progress Bar & Time
+function updateProgressBar(e) {
+  if (isPlaying) {
+    const { duration, currentTime } = e.srcElement;
+    const progressPercent = (currentTime / duration) * 100;
+    progress.style.width = `${progressPercent}%`;
+  }
+}
+
 // Even Listeners
 prevBtn.addEventListener("click", prevSong);
 nextBtn.addEventListener("click", nextSong);
+music.addEventListener("timeupdate", updateProgressBar);
